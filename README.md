@@ -1,5 +1,43 @@
 # PHP 8.5 Todo List Application
 
+> **Created with Google Antigravity** 🤖  
+> This project was built using Google Antigravity, an advanced AI coding assistant by Google DeepMind.
+
+## How This Was Built
+
+This entire application was created through an iterative conversation with Antigravity using the following prompts:
+
+### Initial Prompt
+```
+Please create a todo list using the most cutting edge version of php that you can find. 
+Use all the latest features that are in that version.
+```
+
+### Enhancement Prompt
+```
+Thank you. Please add a optional due date to the items.
+```
+
+### Process
+Antigravity autonomously:
+1. Researched PHP 8.5.0alpha1 features and identified stable implementations
+2. Set up Docker environment with PHP 8.5 alpine container
+3. Implemented core features showcasing:
+   - Pipe operator with parenthesized arrow functions
+   - New `array_first()` and `array_last()` functions
+   - Asymmetric visibility properties
+   - NoDiscard attribute
+4. Created a modern glassmorphism UI with premium styling
+5. Added due date functionality with overdue detection
+6. Tested all features and created comprehensive documentation
+
+**Development Time**: ~2 hours of AI-assisted implementation  
+**Human Involvement**: 2 prompts + repository setup
+
+---
+
+# PHP 8.5 Todo List Application
+
 A demonstration of PHP 8.5's new features through a simple todo list application.
 
 ## PHP 8.5 Features Demonstrated
