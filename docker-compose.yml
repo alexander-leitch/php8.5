@@ -11,7 +11,10 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./database:/var/www/database
-    working_dir: /var/www/html
+      - ./composer.json:/var/www/composer.json
+      - ./phpunit.xml:/var/www/phpunit.xml
+      - ./tests:/var/www/tests
+    working_dir: /var/www
     command: php -S 0.0.0.0:8080 -t /var/www/html
     environment:
       - DB_PATH=/var/www/database/todos.db

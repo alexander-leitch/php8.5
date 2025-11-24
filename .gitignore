@@ -1,4 +1,5 @@
-database/*.db
-database/*.db-journal
-.DS_Store
-vendor/
+/database/todos.db
+/vendor/
+/.phpunit.cache/
+/coverage/
+composer.lock

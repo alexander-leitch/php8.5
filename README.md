@@ -75,6 +75,22 @@ http://localhost:8080
 - `PUT /api/todos/{id}` - Update a todo
 - `DELETE /api/todos/{id}` - Delete a todo
 
+## Testing
+
+The project includes a comprehensive PHPUnit test suite:
+
+- **46 tests** covering all functionality
+- **Unit tests** for Database, Todo model
+- **Integration tests** for TodoService
+- **100% passing** with 127 assertions
+
+### Run Tests
+```bash
+docker compose exec php ./vendor/bin/phpunit --testdox
+```
+
+See [TESTING.md](TESTING.md) for detailed testing documentation.
+
 ## Project Structure
 
 ```
