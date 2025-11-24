@@ -1,4 +1,4 @@
-name: PHP Composer
+name: PHP 8.5 Tests
 
 on:
   push:
@@ -10,30 +10,35 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
+    
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    - name: Run test suite
-      run: composer run-script test
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    
+    - name: Build and start services
+      run: docker compose up -d --build
+    
+    - name: Wait for services to be ready
+      run: sleep 5
+    
+    - name: Install Composer dependencies
+      run: docker compose exec -T php composer install --prefer-dist --no-progress --no-interaction
+    
+    - name: Run PHPUnit tests
+      run: docker compose exec -T php ./vendor/bin/phpunit --testdox --colors=always
+    
+    - name: Check application is running
+      run: curl -f http://localhost:8080 || exit 1
+    
+    - name: Display logs on failure
+      if: failure()
+      run: docker compose logs
+    
+    - name: Clean up
+      if: always()
+      run: docker compose down
